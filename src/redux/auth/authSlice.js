@@ -1,42 +1,65 @@
 import { register, logIn, logOut, userCurrent } from './operation';
 import { createSlice } from '@reduxjs/toolkit';
+import { store } from 'redux/store';
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
+  loading: false,
   isLoggedIn: false,
   isCurrent: false,
+  error: null,
+};
+
+const handlePending = state => {
+  state.loading = true;
+  state.error = null;
+};
+const handleRejected = (state, { payload }) => {
+  state.loading = false;
+  state.error = payload;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
+    [register.pending]: handlePending,
+    [register.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.user = payload.user;
+      store.token = payload.token;
+      store.isLoggedIn = true;
     },
+    [register.rejected]: handleRejected,
+    [logIn.pending]: handlePending,
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
+    [logIn.rejected]: handleRejected,
+    [logOut.pending]: handlePending,
     [logOut.fulfilled](state) {
+      state.loading = false;
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+    [logOut.rejected]: handleRejected,
     [userCurrent.pending](state) {
       state.isCurrent = true;
     },
-    [userCurrent.fulfilled](state, action) {
-      state.user = action.payload;
+    [userCurrent.pending]: handlePending,
+    [userCurrent.fulfilled](state, { payload }) {
+      state.user = payload.user;
       state.isLoggedIn = true;
       state.isCurrent = false;
     },
-    [userCurrent.rejected](state) {
+    [userCurrent.rejected](state, { payload }) {
       state.isCurrent = false;
+      store.loading = false;
+      store.error = payload;
     },
   },
 });
