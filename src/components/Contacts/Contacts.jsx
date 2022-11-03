@@ -1,15 +1,15 @@
-import { Section } from "components/Section/Section";
-import { ContactForm } from "components/ContactForm/ContactForm";
-import { Filter } from "components/Filter/Filter";
-import { ContactList } from "components/ContactList/ContactList";
-import { Loader } from "components/Loader/Loader";
+import { Section } from "./Section/Section";
+import { ContactForm } from "./ContactForm/ContactForm";
+import { Filter } from "./Filter/Filter";
+import { ContactList } from "./ContactList/ContactList";
+import Loader  from "components/Loader/Loader";
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from "redux/filterSlice";
 import { useEffect } from "react";
 import { fetchContacts,deleteContact } from "redux/operation";
 import { selectItems,selectFilter, selectState } from "redux/selectors";
 
-export const Contacts = () => {
+const Contacts = () => {
     const dispatch = useDispatch();
   const filters = useSelector(selectFilter);
   const contacts = useSelector(selectItems)
@@ -50,3 +50,4 @@ const changeContact = event => {
     </>
   )
 }
+export default Contacts

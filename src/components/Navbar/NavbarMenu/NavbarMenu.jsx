@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { nanoid } from "nanoid";
 
 import s from "./NavbarMenu.module.css";
 
@@ -16,7 +17,7 @@ const getClassName = ({isActive}) => {
 
 const NavbarMenu = () => {
     return (
-        <ul className={styles.menu}>
+        <ul className={s.menu}>
            {items.map(({id, to, text}) => (
             <li key={id}>
                 <NavLink className={getClassName} to={to}>{text}</NavLink>

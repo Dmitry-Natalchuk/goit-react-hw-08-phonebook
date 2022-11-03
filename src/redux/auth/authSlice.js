@@ -1,6 +1,5 @@
 import { register, logIn, logOut, userCurrent } from './operation';
 import { createSlice } from '@reduxjs/toolkit';
-import { store } from 'redux/store';
 
 const initialState = {
   user: { name: null, email: null },
@@ -25,11 +24,11 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.pending]: handlePending,
-    [register.fulfilled]: (store, { payload }) => {
-      store.loading = false;
-      store.user = payload.user;
-      store.token = payload.token;
-      store.isLoggedIn = true;
+    [register.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.user = payload.user;
+      state.token = payload.token;
+      state.isLoggedIn = true;
     },
     [register.rejected]: handleRejected,
     [logIn.pending]: handlePending,
@@ -49,6 +48,7 @@ const authSlice = createSlice({
     [logOut.rejected]: handleRejected,
     [userCurrent.pending](state) {
       state.isCurrent = true;
+      state.error = null;
     },
     [userCurrent.pending]: handlePending,
     [userCurrent.fulfilled](state, { payload }) {
@@ -58,8 +58,8 @@ const authSlice = createSlice({
     },
     [userCurrent.rejected](state, { payload }) {
       state.isCurrent = false;
-      store.loading = false;
-      store.error = payload;
+      state.loading = false;
+      state.error = payload;
     },
   },
 });
