@@ -14,11 +14,9 @@ const Navbar = () => {
         <header>
             <nav>
                 <div>
-                    <div>
-                        <Link to="/">Logo</Link>
-                        {isLoggedIn && <NavbarMenu />}
-                        {isLoggedIn ? <NavbarUser /> : <NavbarAuth />}
-                    </div>
+                    <Link to="/">Home</Link>
+                    {isLoggedIn && <NavbarMenu />}
+                    {isLoggedIn ? <NavbarUser /> : <NavbarAuth />}
                 </div>
             </nav>
         </header>

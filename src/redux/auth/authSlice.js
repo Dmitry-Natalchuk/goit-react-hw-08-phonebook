@@ -52,7 +52,7 @@ const authSlice = createSlice({
     },
     [userCurrent.pending]: handlePending,
     [userCurrent.fulfilled](state, { payload }) {
-      state.user = payload.user;
+      state.user = payload;
       state.isLoggedIn = true;
       state.isCurrent = false;
     },
