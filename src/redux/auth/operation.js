@@ -55,7 +55,6 @@ export const userCurrent = createAsyncThunk(
     if (persistedToken === null) {
       return rejectWithValue('Unable to fetch user');
     }
-
     try {
       setAuthToken(persistedToken);
       const { data } = await axios.get('/users/current');
