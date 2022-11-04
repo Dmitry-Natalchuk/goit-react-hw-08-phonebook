@@ -1,13 +1,13 @@
 import { useState } from "react";
 import s from "./ContactForm.module.css"
-import { addContact } from "redux/operation";
+import { addContact } from "redux/contacts/operation";
 import { useDispatch,useSelector} from 'react-redux';
-import { selectItems } from "redux/selectors";
+import { selectItems } from "redux/contacts/selectors";
 
 
 export const ContactForm = () => {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [number, setNumber] = useState("");
   const contacts = useSelector(selectItems);
   const dispatch = useDispatch();
 
@@ -19,8 +19,8 @@ export const ContactForm = () => {
       case "name" :
         setName(value)
         break;
-      case "phone" :
-        setPhone(value)
+      case "number" :
+        setNumber(value)
         break;
       default :
         return
@@ -30,13 +30,13 @@ export const ContactForm = () => {
  const handleSubmit = event => {
     event.preventDefault();
     setName("");
-    setPhone("");
+    setNumber("");
 
     if (contacts?.some(contact => contact.name.toLowerCase() === name.toLowerCase())
     ) {
       return alert(`${name} is already in contacts.`);
     }
-    dispatch(addContact({name,phone}))
+    dispatch(addContact({name,number}))
   };
 
     return (
@@ -55,14 +55,14 @@ export const ContactForm = () => {
           />
         </label>
         <label className={s.label} >
-          Phone
+          Number
           <input
             className={s.input}
-            value={phone}
+            value={number}
             onChange={handleChange}
             type="tel"
-            name="phone"
-             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}" 
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}" 
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />

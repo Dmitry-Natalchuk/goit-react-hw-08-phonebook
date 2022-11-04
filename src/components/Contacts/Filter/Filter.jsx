@@ -3,11 +3,6 @@ import s from "./Filter.module.css"
 
 
 export const Filter = ({value,changeContact}) => {
-
-
-
-
-    
     return (
         <label className={s.label}>
              Find contacts by name

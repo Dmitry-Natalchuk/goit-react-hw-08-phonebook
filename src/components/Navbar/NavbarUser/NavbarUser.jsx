@@ -1,6 +1,7 @@
 import { useDispatch} from "react-redux";
 import { logOut } from "redux/auth/operation";
 import useAuth from "hooks/useAuth"
+import s from "./NavbarUser.module.css"
 
 
  const NavbarUser = () => {
@@ -12,9 +13,9 @@ import useAuth from "hooks/useAuth"
   }
 
   return (
-    <div>
-      <p>{`Welcome back, ${user.email}`}</p>
-      <button onClick={onLogout}>Logout</button>
+    <div className={s.box}>
+      <p className={s.text}>{`Welcome back, ${user.email}`}</p>
+      <button className={s.button} onClick={onLogout}>Logout</button>
       </div>
   )
 }

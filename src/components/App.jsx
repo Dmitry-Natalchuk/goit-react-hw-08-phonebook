@@ -21,7 +21,6 @@ export const App = () => {
         {isCurrent ? <Loader /> : (
         <>
             <Navbar />
-            {/* <Contacts /> */}
             <UserRoutes />
         </>
         )}

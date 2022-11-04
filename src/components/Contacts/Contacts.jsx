@@ -6,11 +6,11 @@ import Loader  from "components/Loader/Loader";
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from "redux/filterSlice";
 import { useEffect } from "react";
-import { fetchContacts,deleteContact } from "redux/operation";
-import { selectItems,selectFilter, selectState } from "redux/selectors";
+import { fetchContacts,deleteContact } from "redux/contacts/operation";
+import { selectItems,selectFilter, selectState } from "redux/contacts/selectors";
 
 const Contacts = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const filters = useSelector(selectFilter);
   const contacts = useSelector(selectItems)
   const {loading,error} = useSelector(selectState)

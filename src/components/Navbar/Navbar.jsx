@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-
+import s from "./Navbar.module.css"
 import NavbarAuth from "./NavbarAuth/NavbarAuth";
-import NavbarMenu from "./NavbarMenu/NavbarMenu";
 import NavbarUser from "./NavbarUser/NavbarUser";
 
 import useAuth from 'hooks/useAuth';
@@ -11,13 +10,12 @@ const Navbar = () => {
     const {isLoggedIn} = useAuth()
 
     return (
-        <header>
+        <header className={s.header}>
+            <Link className={s.link} to="/">Home</Link>
             <nav>
-                <div>
-                    <Link to="/">Home</Link>
-                    {isLoggedIn && <NavbarMenu />}
+                <div className={s.link}>
                     {isLoggedIn ? <NavbarUser /> : <NavbarAuth />}
-                </div>
+                 </div> 
             </nav>
         </header>
     )

@@ -4,14 +4,14 @@ import s from "./ContactList.module.css"
 
 export const ContactList = ({ contacts, onDeleteContact }) => (
   <ul className={s.list}>
-    {contacts.map(({ id, name, phone }) => {
+    {contacts.map(({ id, name, number }) => {
       return (
         <li key={id} className = {s.item}>
         <p className={s.info}>
-          {name}: {phone}
+          {name}: {number}
         </p>
         <button
-        className={s.btn}
+          className={s.btn}
           type="submit"
           onClick={() => onDeleteContact(id)}>
           X
@@ -27,7 +27,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ),
   onDeleteContact: PropTypes.func.isRequired,
