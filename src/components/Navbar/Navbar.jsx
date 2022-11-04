@@ -11,7 +11,7 @@ const Navbar = () => {
 
     return (
         <header className={s.header}>
-            <Link className={s.link} to="/">Home</Link>
+            <Link className={s.link} to="/">Phonebook</Link>
             <nav>
                 <div className={s.link}>
                     {isLoggedIn ? <NavbarUser /> : <NavbarAuth />}
