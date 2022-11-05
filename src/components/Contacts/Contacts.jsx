@@ -4,7 +4,7 @@ import { Filter } from "./Filter/Filter";
 import { ContactList } from "./ContactList/ContactList";
 import Loader  from "components/Loader/Loader";
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from "redux/filterSlice";
+import { setFilter } from "redux/contacts/filterSlice";
 import { useEffect } from "react";
 import { fetchContacts,deleteContact } from "redux/contacts/operation";
 import { selectItems,selectFilter, selectState } from "redux/contacts/selectors";
